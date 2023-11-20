@@ -1,0 +1,47 @@
+.container {
+  background-color: var(--bgSoft);
+  padding: 20px;
+  border-radius: 10px;
+  margin-top: 20px;
+}
+.form {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.form input,
+.form textarea,
+.form select {
+  padding: 10px;
+  background-color: var(--bg);
+  color: var(--text);
+  border: 2px solid #2e374a;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+.form input,
+.form select {
+  width: 28%;
+}
+/* .form select {
+    background-color: transparent;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    padding-right: 30px;
+  
+    background-repeat: no-repeat;
+    background-position: center right;
+  } */
+
+.form textarea {
+  width: 100%;
+}
+.form button {
+  width: 100%;
+  padding: 15px 30px;
+  background-color: teal;
+  color: var(--text);
+  border: none;
+  cursor: pointer;
+}

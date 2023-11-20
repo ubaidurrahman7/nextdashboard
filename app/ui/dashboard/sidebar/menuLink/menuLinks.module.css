@@ -1,0 +1,13 @@
+.container {
+  padding: 12px 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-radius: 10px;
+  margin-bottom: 5px;
+  max-height: 100vh;
+}
+.container:hover,
+.active {
+  background-color: #2e374a;
+}
