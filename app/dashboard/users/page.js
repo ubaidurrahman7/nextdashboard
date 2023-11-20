@@ -7,7 +7,8 @@ import { fetchUser } from "@/app/lib/data";
 
 const UsersPage = async ({ searchParams }) => {
   const q = searchParams?.q || "";
-  const users = await fetchUser(q);
+  const page = searchParams?.page || 1;
+  const { count, users } = await fetchUser(q, page);
 
   return (
     <div className={styles.container}>
@@ -34,7 +35,7 @@ const UsersPage = async ({ searchParams }) => {
               <td>
                 <div className={styles.user}>
                   <Image
-                    src={user.img || "noavatar.png"}
+                    src={user.img || "/noavatar.png"}
                     alt="user image"
                     width={40}
                     height={40}
@@ -65,7 +66,7 @@ const UsersPage = async ({ searchParams }) => {
           ))}
         </tbody>
       </table>
-      <Pagination />
+      <Pagination count={count} />
     </div>
   );
 };
