@@ -1,4 +1,3 @@
-import { authunticate } from "../lib/actions";
 import styles from "../ui/login/login.module.css";
 import LoginForm from "../ui/login/loginForm/loginForm";
 

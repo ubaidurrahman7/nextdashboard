@@ -59,7 +59,7 @@ export const updateUser = async (formData) => {
 };
 
 export const addProduct = async (formData) => {
-  const { title, desc, price, stock, color, size } =
+  const { title, desc, price, stock, color, size, category } =
     Object.fromEntries(formData);
   try {
     connectToDB();

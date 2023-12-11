@@ -6,15 +6,19 @@ const AddProduct = () => {
     <div className={styles.container}>
       <form action={addProduct} className={styles.form}>
         <input type="text" placeholder="title" name="title" required />
-        <select
-          name="category"
-          id="category"
-          onChange={() => setSelectedCategory(e.target.value)}
-        >
-          <option value="general">Chose a Category</option>
-          <option value="kitchen">kitchen</option>
-          <option value="phone">Phone</option>
-          <option value="computer">Computer</option>
+        <select name="category" id="category">
+          <option for="category" value="general">
+            Chose a Category
+          </option>
+          <option for="category" value="kitchen">
+            kitchen
+          </option>
+          <option for="category" value="phone">
+            Phone
+          </option>
+          <option for="category" value="computer">
+            Computer
+          </option>
         </select>
         <input type="number" placeholder="price" name="price" />
         <input type="number" placeholder="Stock" name="stock" />
