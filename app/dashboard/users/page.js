@@ -3,12 +3,13 @@ import styles from "../../ui/dashboard/users/users.module.css";
 import Search from "../search/search";
 import Image from "next/image";
 import Pagination from "@/app/ui/dashboard/pagination/pagination";
-import { fetchUser } from "@/app/lib/data";
+import { fetchUsers } from "@/app/lib/data";
+import { deleteUser } from "@/app/lib/actions";
 
 const UsersPage = async ({ searchParams }) => {
   const q = searchParams?.q || "";
   const page = searchParams?.page || 1;
-  const { count, users } = await fetchUser(q, page);
+  const { count, users } = await fetchUsers(q, page);
 
   return (
     <div className={styles.container}>
@@ -55,11 +56,12 @@ const UsersPage = async ({ searchParams }) => {
                       View
                     </button>
                   </Link>
-                  <Link href="">
+                  <form action={deleteUser}>
+                    <input type="hidden" name="id" value={user._id || ""} />
                     <button className={`${styles.button} ${styles.delete}`}>
                       Delete
                     </button>
-                  </Link>
+                  </form>
                 </div>
               </td>
             </tr>

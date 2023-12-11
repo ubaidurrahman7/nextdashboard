@@ -1,36 +1,65 @@
+import { updateUser } from "@/app/lib/actions";
+import { fetchUser } from "@/app/lib/data";
 import styles from "@/app/ui/dashboard/users/userpage.module.css";
 import Image from "next/image";
 
-const UserPage = () => {
+const UserPage = async ({ params }) => {
+  const { id } = params;
+  const user = await fetchUser(id);
   return (
     <div className={styles.container}>
       <div className={styles.infoContainer}>
         <div className={styles.imgContainer}>
-          <Image src="/noavatar.png" alt="user" fill />
+          <Image src={user.img || "/noavatar.png"} alt="user image" fill />
         </div>
-        Trent Boult
+        {user.username}
       </div>
       <div className={styles.formContainer}>
-        <form className={styles.form}>
+        <form action={updateUser} className={styles.form}>
+          <input type="hidden" name="id" value={user.id || ""} />
           <label>UserName</label>
-          <input type="text" name="username" placeholder="Trent Boult" />
+          <input
+            type="text"
+            name="username"
+            placeholder={user.username || "username"}
+          />
           <label>Email</label>
-          <input type="email" name="email" placeholder="TrentBoult@gmail.com" />
+          <input
+            type="email"
+            name="email"
+            placeholder={user.email || "email"}
+          />
           <label>Password</label>
-          <input type="password" name="passowrd" placeholder="" />
+          <input type="password" name="passowrd" />
           <label>Phone</label>
-          <input type="phone" name="phone" placeholder="12345" />
+          <input
+            type="phone"
+            name="phone"
+            placeholder={user.phone || "phone"}
+          />
           <label>Address</label>
-          <input type="text" name="address" placeholder="Newzealand" />
+          <input
+            type="text"
+            name="address"
+            placeholder={user.address || "address"}
+          />
           <label>Is Admin?</label>
           <select name="isAdmin" id="isAdmin">
-            <option value={true}>Yes</option>
-            <option value={true}>Yes</option>
+            <option value={true} selected={user.isAdmin}>
+              Yes
+            </option>
+            <option value={false} selected={!user.isAdmin}>
+              No
+            </option>
           </select>
           <label>Is Active?</label>
           <select name="isActive" id="isActive">
-            <option value={true}>Yes</option>
-            <option value={true}>Yes</option>
+            <option value={true} selected={user.isActive}>
+              Yes
+            </option>
+            <option value={false} selected={!user.isActive}>
+              No
+            </option>
           </select>
           <button type="submit">Update</button>
         </form>

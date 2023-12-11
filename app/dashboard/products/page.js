@@ -4,6 +4,7 @@ import Image from "next/image";
 import Search from "../search/search";
 import Pagination from "@/app/ui/dashboard/pagination/pagination";
 import { fetchProducts } from "@/app/lib/data";
+import { deleteProduct } from "@/app/lib/actions";
 
 const Products = async ({ searchParams }) => {
   const q = searchParams?.q || "";
@@ -15,7 +16,7 @@ const Products = async ({ searchParams }) => {
       <div className={styles.top}>
         <Search placeholder="search for a Products" />
         <Link href="/dashboard/products/add">
-          <button className={styles.button}>Add User</button>
+          <button className={styles.button}>Add Product</button>
         </Link>
       </div>
       <table className={styles.table}>
@@ -24,6 +25,7 @@ const Products = async ({ searchParams }) => {
             <td>Title</td>
             <td>Description</td>
             <td>Price</td>
+            <td>Category</td>
             <td>Created At</td>
             <td>Stock</td>
             <td>Action</td>
@@ -46,7 +48,8 @@ const Products = async ({ searchParams }) => {
               </td>
               <td>{product.desc}</td>
               <td>{product.price}</td>
-              <td>{product.createdAt?.toString().splice(4, 16)}</td>
+              <td>{product.category}</td>
+              <td>{product.createdAt?.toString().slice(4, 16)}</td>
               <td>{product.stock}</td>
               <td>
                 <div className={styles.buttons}>
@@ -55,11 +58,12 @@ const Products = async ({ searchParams }) => {
                       View
                     </button>
                   </Link>
-                  <Link href="">
+                  <form action={deleteProduct}>
+                    <input type="hidden" name="id" value={product._id || ""} />
                     <button className={`${styles.button} ${styles.delete}`}>
                       Delete
                     </button>
-                  </Link>
+                  </form>
                 </div>
               </td>
             </tr>
